@@ -7,6 +7,12 @@ every number in them are computed by a **deterministic agronomy engine**; a
 language model only *phrases* the result, and when no model is reachable a
 template renders the identical numbers. The system runs fully offline by default.
 
+[![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue)](.github/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue)](pyproject.toml)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+---
+
 ## Why it matters
 
 Most "AI farm advisor" demos let a language model invent the numbers — how many
