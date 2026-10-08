@@ -137,3 +137,21 @@ def test_recommendation_carries_crop_and_stage_identity():
 def test_unknown_crop_is_rejected():
     with pytest.raises(KeyError):
         KB.get("banana")
+
+
+def test_crop_stage_rejects_a_missing_stage_with_a_helpful_error():
+    # Crop.stage() is a public method: when a crop does not define a requested
+    # stage it must raise a clear KeyError naming the crop and the stage, not a
+    # bare dict lookup error. Build a crop with only one stage and ask for another.
+    from agroadvisor.crops import Crop, DiseaseRisk, StageProfile
+
+    partial = Crop(
+        key="test",
+        name="Testcrop",
+        scientific_name="Testus cropus",
+        stages={GrowthStage.INITIAL: StageProfile(0.4, 10.0, 5.0, 8.0)},
+        disease=DiseaseRisk("none", 0.0, 100.0, 0.0, 0.0),
+    )
+    assert partial.stage(GrowthStage.INITIAL).kc == 0.4
+    with pytest.raises(KeyError, match="no profile for stage"):
+        partial.stage(GrowthStage.FLOWERING)

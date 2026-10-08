@@ -77,5 +77,5 @@ class Crop:
     def stage(self, stage: GrowthStage) -> StageProfile:
         try:
             return self.stages[stage]
-        except KeyError as exc:  # pragma: no cover - guarded by the service layer
+        except KeyError as exc:
             raise KeyError(f"{self.name} has no profile for stage {stage!r}") from exc
