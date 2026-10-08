@@ -153,4 +153,4 @@ presentational role where it cannot invent the numbers a grower would act on.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+[MIT](LICENSE) © Angelo David Padilla Romero
