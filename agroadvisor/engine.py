@@ -145,9 +145,7 @@ def _deficit(nutrient: str, target: float, soil: float) -> NutrientDeficit:
     )
 
 
-def _pest_risk(
-    crop: Crop, weather: Weather, *, moderate_at: int, high_at: int
-) -> PestRiskAdvice:
+def _pest_risk(crop: Crop, weather: Weather, *, moderate_at: int, high_at: int) -> PestRiskAdvice:
     d = crop.disease
     temp_ok = d.temp_min_c <= weather.temperature_c <= d.temp_max_c
     humidity_ok = weather.humidity_pct >= d.humidity_pct_min
@@ -165,8 +163,7 @@ def _pest_risk(
             name="humidity high enough",
             met=humidity_ok,
             detail=(
-                f"{weather.humidity_pct:g}% "
-                f"{'>=' if humidity_ok else '<'} {d.humidity_pct_min:g}%"
+                f"{weather.humidity_pct:g}% {'>=' if humidity_ok else '<'} {d.humidity_pct_min:g}%"
             ),
         ),
         RiskCondition(
@@ -222,9 +219,7 @@ def recommend(
         ],
         rule="deficit = max(0, stage target - soil test) per nutrient, kg/ha",
     )
-    pest_risk = _pest_risk(
-        crop, weather, moderate_at=risk_moderate_at, high_at=risk_high_at
-    )
+    pest_risk = _pest_risk(crop, weather, moderate_at=risk_moderate_at, high_at=risk_high_at)
     return Recommendation(
         crop=crop.name,
         crop_scientific=crop.scientific_name,

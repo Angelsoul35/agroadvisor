@@ -79,9 +79,7 @@ def _template(rec: Recommendation) -> str:
     """Deterministic prose over the exact computed numbers. Invents nothing."""
     irr = rec.irrigation
     out: list[str] = []
-    out.append(
-        f"{rec.crop} at the {rec.stage} stage (Kc {irr.kc:g}, ET0 {irr.et0_mm:g} mm/day)."
-    )
+    out.append(f"{rec.crop} at the {rec.stage} stage (Kc {irr.kc:g}, ET0 {irr.et0_mm:g} mm/day).")
 
     if irr.net_irrigation_mm > 0:
         out.append(
@@ -104,9 +102,7 @@ def _template(rec: Recommendation) -> str:
     else:
         out.append("Fertilisation: soil levels meet the stage targets; apply nothing.")
     if met and needed:
-        out.append(
-            "Already met: " + ", ".join(f"{d.nutrient}" for d in met) + "."
-        )
+        out.append("Already met: " + ", ".join(f"{d.nutrient}" for d in met) + ".")
 
     risk = rec.pest_risk
     out.append(
@@ -124,9 +120,7 @@ class Advisor:
     def advise(self, rec: Recommendation) -> Advisory:
         if self.llm is not None:
             try:
-                result = self.llm.complete(
-                    _SYSTEM, _prompt(rec), max_tokens=self.max_tokens
-                )
+                result = self.llm.complete(_SYSTEM, _prompt(rec), max_tokens=self.max_tokens)
                 text = result.text.strip()
                 if text:
                     return Advisory(text=text, source="llm")

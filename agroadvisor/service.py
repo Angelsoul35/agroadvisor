@@ -31,9 +31,7 @@ class AdvisorService:
         self.knowledge = knowledge or KnowledgeBase()
         self.advisor = Advisor(llm=self.llm, max_tokens=self.settings.llm_max_tokens)
 
-    def recommend(
-        self, crop: str, stage: str, soil: SoilTest, weather: Weather
-    ) -> Recommendation:
+    def recommend(self, crop: str, stage: str, soil: SoilTest, weather: Weather) -> Recommendation:
         """Resolve the crop and stage and run the deterministic engine."""
         crop_obj = self.knowledge.get(crop)
         stage_obj = GrowthStage(stage.strip().lower())

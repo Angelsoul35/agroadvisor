@@ -23,8 +23,11 @@ def _dry_maize() -> Recommendation:
         GrowthStage.VEGETATIVE,
         SoilTest(n_kg_ha=50, p_kg_ha=15, k_kg_ha=30),
         Weather(
-            et0_mm=6.5, rainfall_mm=2.0, temperature_c=30.0,
-            humidity_pct=50.0, leaf_wetness_hours=2.0,
+            et0_mm=6.5,
+            rainfall_mm=2.0,
+            temperature_c=30.0,
+            humidity_pct=50.0,
+            leaf_wetness_hours=2.0,
         ),
     )
 
@@ -94,8 +97,11 @@ def test_template_says_no_irrigation_when_demand_is_covered():
         GrowthStage.FLOWERING,
         SoilTest(n_kg_ha=130, p_kg_ha=70, k_kg_ha=180),
         Weather(
-            et0_mm=4.0, rainfall_mm=12.0, temperature_c=22.0,
-            humidity_pct=60.0, leaf_wetness_hours=3.0,
+            et0_mm=4.0,
+            rainfall_mm=12.0,
+            temperature_c=22.0,
+            humidity_pct=60.0,
+            leaf_wetness_hours=3.0,
         ),
     )
     advisory = Advisor(llm=FailingLLM()).advise(rec)
@@ -111,8 +117,11 @@ def test_template_reports_high_blight_risk():
         GrowthStage.FLOWERING,
         SoilTest(n_kg_ha=90, p_kg_ha=50, k_kg_ha=120),
         Weather(
-            et0_mm=3.5, rainfall_mm=1.0, temperature_c=18.0,
-            humidity_pct=95.0, leaf_wetness_hours=12.0,
+            et0_mm=3.5,
+            rainfall_mm=1.0,
+            temperature_c=18.0,
+            humidity_pct=95.0,
+            leaf_wetness_hours=12.0,
         ),
     )
     advisory = Advisor(llm=FailingLLM()).advise(rec)
