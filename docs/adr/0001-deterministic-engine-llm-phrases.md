@@ -22,5 +22,5 @@ instructed to invent, change or omit nothing.
   recompute its arithmetic by hand rather than trusting it.
 - The LLM output is a convenience layer. The structured recommendation is always
   returned alongside the prose, so the contract never depends on the model.
-- Honesty is built in: the offline template is tested to print only numbers the
-  engine computed, and the docs state plainly that the model phrases, not decides.
+- Verifiability is built in: the offline template is tested to print only numbers
+  the engine computed, and the docs state plainly that the model phrases, not decides.

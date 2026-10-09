@@ -1,6 +1,6 @@
 # 03 — LLM que redacta, no que decide
 
-## El reparto honesto de responsabilidades
+## El reparto riguroso de responsabilidades
 
 La mayoría de las demos de "IA para el campo" dejan que un modelo de lenguaje
 invente los números: cuántos milímetros regar, cuántos kilos de nitrógeno. Ese es
@@ -38,5 +38,5 @@ lado de la prosa. El contrato es la estructura; la prosa es una comodidad.
 Y para la plantilla offline lo garantizamos con un test
 (`test_template_invents_no_numbers`): extrae **todos** los números que imprime la
 plantilla y comprueba que cada uno es un número que el motor calculó. Si la
-plantilla imprimiera una cifra inventada, el test falla. Es la honestidad del
-proyecto convertida en una aserción ejecutable.
+plantilla imprimiera una cifra inventada, el test falla. Es una garantía
+verificable del proyecto convertida en una aserción ejecutable.

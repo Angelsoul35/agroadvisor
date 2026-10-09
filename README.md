@@ -60,7 +60,7 @@ flowchart TD
    the offline template renders those same numbers. Each result records its
    `source` (`llm` or `template`).
 
-## The honest split: deterministic substance, LLM phrasing
+## The verifiable split: deterministic substance, LLM phrasing
 
 This project is deliberate about which part is trustworthy and which is cosmetic.
 
@@ -77,6 +77,49 @@ This project is deliberate about which part is trustworthy and which is cosmetic
   published FAO-56 ranges; the NPK stage targets and disease weather bands are
   plausible teaching values, not a calibrated agronomic model. They exist to make
   the engine's arithmetic transparent, not to be applied to a real field.
+
+## Validated on real agronomic data
+
+The deterministic engine answers *"given this crop, how do I manage it?"*.
+AgroAdvisor also ships a **learned crop recommender** that answers the upstream
+question *"which crop suits this plot?"* from seven soil-and-climate measurements —
+and it is trained and benchmarked on a real, public dataset, with numbers you can
+reproduce. The recommender sits alongside the engine and composes with it:
+recommend a crop, then hand it to the engine for a management plan. The audited
+arithmetic is untouched; this is a capability added on top.
+
+- **Data.** 2200 real field observations from the public
+  [`randalakab/Crop-recommendation`](https://huggingface.co/datasets/randalakab/Crop-recommendation)
+  dataset — seven features (`N`, `P`, `K`, temperature, humidity, pH, rainfall)
+  labelled with one of **22 crops** (100 rows each). The rows are vendored under
+  [`datasets/`](datasets/README.md); `python -m agroadvisor.real_data` regenerates
+  them through the Hugging Face rows API (`urllib`, with backoff retries).
+- **Model.** A multinomial logistic regression over standardised features —
+  interpretable and well-calibrated, with a train/test gap you can read.
+- **Result (leakage-free evaluation).**
+
+  | Metric | Stratified 5-fold CV | Held-out 25% split |
+  | ------ | -------------------- | ------------------ |
+  | Accuracy | **0.9341** ± 0.0041 | **0.9382** |
+  | Macro-F1 | **0.9333** ± 0.0048 | **0.9375** |
+
+  The cross-validation mean and the held-out test accuracy agree to within
+  0.0041, and the **train/test gap is 0.0030** — a well-fit model that generalises
+  rather than memorising. Held-out accuracy sits **20.6× above** the 1/22 = 0.0455
+  chance rate. As a control, retraining on randomly permuted labels collapses to
+  **0.0409**, right at chance — the score reflects real signal, not leakage.
+
+Reproduce the full report:
+
+```bash
+pip install -e ".[dev]"            # pulls in scikit-learn + numpy (the "ml" extra)
+python -m agroadvisor.real_benchmark
+```
+
+**Where to take it next:** swap logistic regression for a gradient-boosted
+ensemble and compare the gap; add calibrated top-k suggestions to the HTTP API;
+or feed the recommended crop straight into the engine for an end-to-end
+"what to plant here, and how to manage it" flow.
 
 ## Quick start
 

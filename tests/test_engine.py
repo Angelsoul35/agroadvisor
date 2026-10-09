@@ -1,6 +1,6 @@
 """The deterministic engine, with every expected number recomputed by hand here.
 
-These tests are the project's honesty anchor: they do not trust the engine, they
+These tests are the project's verification anchor: they do not trust the engine, they
 independently recompute what the arithmetic must produce and assert the engine
 agrees.
 """

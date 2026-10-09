@@ -17,6 +17,10 @@ decisión.
    Cómo funciona el fallback de proveedores y por qué el sistema es offline-first.
 5. [05 — Preguntas de entrevista](05-preguntas-de-entrevista.md)
    Preguntas típicas y cómo responderlas con este proyecto.
+6. [06 — Evaluación con datos reales](06-evaluacion-datos-reales.md)
+   El recomendador de cultivo aprendido: dataset real, métricas (exactitud y
+   macro-F1), sobreajuste/subajuste y la brecha, validación cruzada frente a
+   partición retenida, y el control de etiquetas barajadas, con números reales.
 
 ## La idea en una frase
 

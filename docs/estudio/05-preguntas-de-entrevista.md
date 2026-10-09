@@ -48,6 +48,6 @@ determinista, LLM en un papel presentacional— no cambiaría; cambiarían los d
 la fidelidad de los modelos.
 
 ### "¿Qué es lo que más te gusta del diseño?"
-Que la honestidad es una propiedad verificable, no una promesa: el reparto
+Que la fiabilidad es una propiedad verificable, no una promesa: el reparto
 "motor calcula / LLM redacta" está respaldado por un test que impide que el texto
 introduzca un número que el motor no produjo.

@@ -16,7 +16,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.3", "pytest-cov>=6.0", "ruff>=0.8"]
+ml = ["scikit-learn>=1.5", "numpy>=1.26"]
+dev = ["pytest>=8.3", "pytest-cov>=6.0", "ruff>=0.8", "agroadvisor[ml]"]
 
 [project.scripts]
 agroadvisor = "agroadvisor.cli:main"

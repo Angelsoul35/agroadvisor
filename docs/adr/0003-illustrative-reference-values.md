@@ -22,5 +22,5 @@ and disease bands — not calibrated for any real region. The engine's arithmeti
   whether the constants are right for a given field.
 - The data can be replaced with locally calibrated, agronomist-reviewed values
   without touching the arithmetic — the intended path to a real product.
-- The claim the project makes is honest: the *method* is sound and tested; the
+- The claim the project makes is verifiable: the *method* is sound and tested; the
   *numbers* are illustrative, and the README's scope note says so explicitly.

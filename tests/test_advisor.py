@@ -1,6 +1,6 @@
 """The advisor: LLM phrasing on the happy path, deterministic template otherwise.
 
-The key honesty test here is ``test_template_invents_no_numbers``: every numeric
+The key grounding test here is ``test_template_invents_no_numbers``: every numeric
 token the offline template prints must be one the engine actually computed.
 """
 
